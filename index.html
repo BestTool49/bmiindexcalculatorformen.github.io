@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compute BMI female easily with our user-friendly BMI Index Calculator For Men. Input your age, height, and weight to get accurate results tailored for women. Understand your body mass index to maintain a healthy lifestyle.">
+    <title>Compute BMI Calculator - BMI Index Calculator for Men</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #5719c5;
+            color: #fff;
+        }
+        .header-footer {
+            background-color: #4109a3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .calculator {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .pie-chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .pie-chart {
+            width: 300px;
+            height: 300px;
+        }
+        .article-container {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Old Standard TT">
+    <style>
+        body {
+            font-family: "Old Standard TT", serif;
+        }
+    </style>
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento Sans">
+<style>
+body {
+  font-family: "Quattrocento Sans", serif;
+}
+</style>
+	
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header-footer text-center py-4 mb-4">
+        <h1 class="text-light">BMI Index Calculator For Men</h1>
+    </header>
+
+    <!-- BMI Calculator Section -->
+    <div class="calculator my-5 text-center p-4">
+        <h2>BMI Calculator</h2>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" class="form-control" placeholder="Enter your age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" class="form-control">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Units:</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="unit" value="us" checked>
+                <label class="form-check-label">US Units</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="unit" value="metric">
+                <label class="form-check-label">Metric Units</label>
+            </div>
+        </div>
+
+        <div id="usInputs">
+            <div class="form-group">
+                <label for="heightFeet">Height (Feet):</label>
+                <input type="number" id="heightFeet" class="form-control" placeholder="Feet" required>
+            </div>
+            <div class="form-group">
+                <label for="heightInches">Height (Inches):</label>
+                <input type="number" id="heightInches" class="form-control" placeholder="Inches" required>
+            </div>
+            <div class="form-group">
+                <label for="weightPounds">Weight (Pounds):</label>
+                <input type="number" id="weightPounds" class="form-control" placeholder="Weight in pounds" required>
+            </div>
+        </div>
+
+        <div id="metricInputs" style="display: none;">
+            <div class="form-group">
+                <label for="heightCM">Height (CM):</label>
+                <input type="number" id="heightCM" class="form-control" placeholder="Centimeters" required>
+            </div>
+            <div class="form-group">
+                <label for="weightKG">Weight (KG):</label>
+                <input type="number" id="weightKG" class="form-control" placeholder="Weight in kg" required>
+            </div>
+        </div>
+
+        <!-- Calculate and Clear Buttons -->
+        <button class="btn btn-primary mt-3" onclick="calculateBMI()">Calculate BMI</button>
+        <button class="btn btn-secondary mt-3" onclick="clearFields()">Clear</button>
+
+        <h3 class="mt-4">Your BMI: <span id="bmiResult">-</span></h3>
+
+        <!-- Bootstrap card for pie chart -->
+        <div class="card pie-chart-container mt-4" id="chartCard" style="display: none;">
+            <div class="card-header">BMI Distribution</div>
+            <div class="card-body">
+                <canvas id="pieChart" class="pie-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Section -->
+    <div class="container article-container mt-5">
+        <!-- Article Section -->
+        <section class="mt-5">
+            <h2 class="text-center text-primary">BMI Index Calculator for Men: Discover Your Health Status Instantly!</h2>
+            <p>
+                Understanding your Body Mass Index (BMI) is crucial for assessing your overall health, especially for men who want to stay in top physical condition. Our easy-to-use BMI calculator provides quick results, helping you find out if you’re in a healthy weight range, underweight, overweight, or at risk of obesity. But what exactly is the BMI Index, and why is it so important? 
+            </p>
+
+            <h3>What is BMI and Why is it Important?</h3>
+            <p>
+                The Body Mass Index (BMI) is a number derived from an individual’s height and weight, providing a reliable way to categorize health risk related to body weight. Although it doesn’t directly measure body fat, BMI is used by health professionals worldwide to assess whether someone is underweight, normal weight, overweight, or obese. This calculation is particularly beneficial for men, as it gives a snapshot of potential health risks linked to weight, including cardiovascular disease, type 2 diabetes, and other chronic conditions.
+            </p>
+
+            <h3>Why Should Men Calculate Their BMI?</h3>
+            <p>
+                For men, maintaining a healthy BMI can help reduce the risk of many lifestyle-related diseases. Men with a higher muscle mass might find that their BMI doesn’t fully reflect their health status; however, for most individuals, BMI is a strong indicator of weight-related health risks. This makes calculating and understanding your BMI critical in taking proactive steps toward a healthier lifestyle.
+            </p>
+
+            <h4>How to Use the BMI Index Calculator for Men</h4>
+            <p>
+                Our BMI calculator allows men to toggle between metric and US units, making it convenient for anyone. Simply input your age, gender, height, and weight, and the calculator will give you an immediate BMI result along with a suggested category. This quick assessment can be the first step in better managing your weight and health.
+            </p>
+
+            <h3>What BMI Range is Considered Healthy for Men?</h3>
+            <ul>
+                <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                <li><strong>Normal Weight:</strong> BMI between 18.5 and 24.9</li>
+                <li><strong>Overweight:</strong> BMI between 25 and 29.9</li>
+                <li><strong>Obese:</strong> BMI 30 or greater</li>
+            </ul>
+            <p>
+                Men with a BMI in the normal range typically have a lower risk of developing chronic health issues. Those who fall outside this range should consult with a healthcare provider to develop a personalized health plan.
+            </p>
+
+            <h3>Frequently Asked Questions</h3>
+
+            <h4>1. Does BMI Calculate Body Fat?</h4>
+            <p>
+                No, BMI does not directly measure body fat. It is a general tool that estimates weight-related health risks. For men with higher muscle mass, additional measurements may be required for an accurate assessment.
+            </p>
+
+            <h4>2. Can BMI Vary with Age?</h4>
+            <p>
+                Yes, BMI calculations can vary depending on age. Our calculator takes your age into account for a more precise assessment.
+            </p>
+
+            <h4>3. What if My BMI is High but I’m Muscular?</h4>
+            <p>
+                Men with significant muscle mass may have a higher BMI without necessarily having excess body fat. If your BMI is high, consider consulting a healthcare provider who can perform additional assessments, such as body fat measurements.
+            </p>
+
+            <h4>4. What Health Risks are Linked to High BMI in Men?</h4>
+            <p>
+                Men with a high BMI are at an increased risk for conditions such as heart disease, high blood pressure, type 2 diabetes, and certain cancers. Maintaining a healthy BMI can help reduce these risks.
+            </p>
+
+            <h3>Conclusion</h3>
+            <p>
+                Using a BMI index calculator specifically designed for men can be a helpful starting point in your health journey. By understanding your BMI and its implications, you can make informed decisions about diet, exercise, and lifestyle to promote a healthier future.
+            </p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="header-footer text-center py-4 mt-4">
+        <p>&copy; 2024 BMI Index Calculator For Men. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.querySelectorAll('input[name="unit"]').forEach((elem) => {
+            elem.addEventListener("change", function(event) {
+                document.getElementById("usInputs").style.display = event.target.value === "us" ? "block" : "none";
+                document.getElementById("metricInputs").style.display = event.target.value === "metric" ? "block" : "none";
+            });
+        });
+
+        let pieChart;
+
+        function calculateBMI() {
+            let bmi;
+            if (document.querySelector('input[name="unit"]:checked').value === "us") {
+                let feet = parseFloat(document.getElementById("heightFeet").value);
+                let inches = parseFloat(document.getElementById("heightInches").value);
+                let weight = parseFloat(document.getElementById("weightPounds").value);
+                let height = (feet * 12 + inches) * 0.0254;
+                weight *= 0.453592;
+                bmi = weight / (height * height);
+            } else {
+                let height = parseFloat(document.getElementById("heightCM").value) / 100;
+                let weight = parseFloat(document.getElementById("weightKG").value);
+                bmi = weight / (height * height);
+            }
+
+            document.getElementById("bmiResult").innerText = bmi.toFixed(2);
+            document.getElementById("chartCard").style.display = "block";
+            drawChart(bmi);
+        }
+
+        function clearFields() {
+            // Clear input fields
+            document.getElementById("age").value = "";
+            document.getElementById("gender").value = "male";
+            document.querySelector('input[name="unit"][value="us"]').checked = true;
+            document.getElementById("heightFeet").value = "";
+            document.getElementById("heightInches").value = "";
+            document.getElementById("weightPounds").value = "";
+            document.getElementById("heightCM").value = "";
+            document.getElementById("weightKG").value = "";
+            document.getElementById("bmiResult").innerText = "-";
+            document.getElementById("chartCard").style.display = "none";
+        }
+
+        function drawChart(bmi) {
+            const ctx = document.getElementById("pieChart").getContext("2d");
+            const data = {
+                labels: ["Underweight", "Normal weight", "Overweight", "Obese"],
+                datasets: [{
+                    data: [18.5, 24.9, 29.9, 30],
+                    backgroundColor: ["#007bff", "#28a745", "#ffc107", "#dc3545"],
+                }]
+            };
+
+            if (pieChart) pieChart.destroy();
+            pieChart = new Chart(ctx, { type: 'pie', data });
+        }
+    </script>
+</body>
+</html>
